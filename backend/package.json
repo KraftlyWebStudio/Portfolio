@@ -1,0 +1,37 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon --watch src --ext ts --exec \"pnpm exec tsx\" src/server.ts",
+    "start": "tsx src/server.ts",
+    "build": "pnpm prisma:generate && tsc -p tsconfig.json",
+    "prisma:generate": "prisma generate"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.28.2",
+  "dependencies": {
+    "@prisma/adapter-pg": "^7.7.0",
+    "@prisma/client": "^7.7.0",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "express-rate-limit": "8.3.2",
+    "ioredis": "5.10.1",
+    "winston": "^3.19.0",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "@types/cors": "2.8.19",
+    "@types/express": "5.0.6",
+    "@types/express-rate-limit": "6.0.2",
+    "@types/ioredis": "5.0.0",
+    "nodemon": "^3.1.14",
+    "prisma": "^7.7.0",
+    "tsx": "4.21.0"
+  }
+}
