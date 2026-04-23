@@ -1,8 +1,5 @@
+import { HeroSection } from "@/components/ui/hero-section";
 
 export default function Home() {
-  return (
-    <>
-      <h1>Hello From Boiler codde</h1>
-    </>
-  );
+  return <HeroSection />;
 }

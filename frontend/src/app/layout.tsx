@@ -1,6 +1,9 @@
 
-import { Plus_Jakarta_Sans } from "next/font/google";
+import { Plus_Jakarta_Sans, Geist } from "next/font/google";
 import "./globals.css";
+import { cn } from "@/lib/utils";
+
+const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
 const plusJakarta = Plus_Jakarta_Sans({
   variable: "--font-plus-jakarta",
@@ -19,7 +22,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${plusJakarta.variable} h-full antialiased scroll-smooth`}
+      className={cn("h-full", "antialiased", "scroll-smooth", plusJakarta.variable, "font-sans", geist.variable)}
       suppressHydrationWarning
     >
       <body className="antialiased min-h-screen selection:bg-brand-dark selection:text-white flex flex-col font-sans">
