@@ -1,62 +1,57 @@
-'use client';
-import React, { useRef, useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { cn } from '@/lib/utils';
+"use client";
+import React from "react";
+import { cn } from "@/lib/utils";
 
 type SpotlightProps = {
   className?: string;
-  size?: number;
+  fill?: string;
 };
 
-export function Spotlight({
-  className,
-  size = 500,
-}: SpotlightProps) {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [position, setPosition] = useState({ x: 0, y: 0 });
-  const [isHovered, setIsHovered] = useState(true);
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-    const handleMouseMove = (event: MouseEvent) => {
-      if (!containerRef.current?.parentElement) return;
-      const { left, top } = containerRef.current.parentElement.getBoundingClientRect();
-      setPosition({
-        x: event.clientX - left - size / 2,
-        y: event.clientY - top - size / 2,
-      });
-    };
-
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, [size]);
-
-  if (!mounted) return null;
-
+export const Spotlight = ({ className, fill }: SpotlightProps) => {
   return (
-    <motion.div
-      ref={containerRef}
+    <svg
       className={cn(
-        'pointer-events-none absolute rounded-full bg-[radial-gradient(circle_at_center,rgba(255,255,255,1)_0%,rgba(255,255,255,0.4)_40%,transparent_80%)] blur-[100px] transition-opacity duration-500',
-        isHovered ? 'opacity-100' : 'opacity-0',
+        "animate-spotlight pointer-events-none absolute z-[1] h-[169%] w-[138%] lg:w-[84%] opacity-0",
         className
       )}
-      animate={{
-        left: position.x,
-        top: position.y,
-      }}
-      transition={{
-        type: 'spring',
-        stiffness: 150,
-        damping: 15,
-        mass: 0.1,
-      }}
-      onLayoutAnimationStart={() => setIsHovered(true)}
-      style={{
-        width: size,
-        height: size,
-      }}
-    />
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 3787 2842"
+      fill="none"
+    >
+      <g filter="url(#filter)">
+        <ellipse
+          cx="1924.71"
+          cy="273.501"
+          rx="1924.71"
+          ry="273.501"
+          transform="matrix(-0.822377 -0.568943 -0.568943 0.822377 3631.88 2291.09)"
+          fill={fill || "white"}
+          fillOpacity="0.21"
+        ></ellipse>
+      </g>
+      <defs>
+        <filter
+          id="filter"
+          x="0.860352"
+          y="0.838989"
+          width="3785.16"
+          height="2840.26"
+          filterUnits="userSpaceOnUse"
+          colorInterpolationFilters="sRGB"
+        >
+          <feFlood floodOpacity="0" result="BackgroundImageFix"></feFlood>
+          <feBlend
+            mode="normal"
+            in="SourceGraphic"
+            in2="BackgroundImageFix"
+            result="shape"
+          ></feBlend>
+          <feGaussianBlur
+            stdDeviation="151"
+            result="effect1_foregroundBlur_1065_8"
+          ></feGaussianBlur>
+        </filter>
+      </defs>
+    </svg>
   );
-}
+};

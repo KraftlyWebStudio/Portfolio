@@ -10,6 +10,10 @@ app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+import { sendContactEmail } from "./controllers/contact.controller";
+
+app.post("/api/contact", sendContactEmail);
+
 app.get("/", (_req, res) => {
   res.send("Backend is Running!");
 });
